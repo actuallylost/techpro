@@ -9,6 +9,7 @@ This repository is a collection of guides, links and tools that have or will be 
 To get the repository, you can clone it using the following command:
 
 ```bash
+sudo apt install git
 git clone https://github.com/actuallylost/techpro.git
 ```
 
