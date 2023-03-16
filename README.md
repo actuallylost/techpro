@@ -6,10 +6,10 @@ This repository is a collection of guides, links and tools that have or will be 
 
 ## Useful Links
 
-[VirtualBox](https://www.virtualbox.org/wiki/Downloads) \
-[Ubuntu 20.04 LTS](https://ubuntu.com/download/server#downloads) \
-[Visual Studio Code](https://code.visualstudio.com/download) \
-[MobaXterm](https://mobaxterm.mobatek.net/download.html) - Alternatively use `ssh username@ip-address` for ssh connections.
+[`VirtualBox`](https://www.virtualbox.org/wiki/Downloads) \
+[`Ubuntu 20.04 LTS`](https://ubuntu.com/download/server#downloads) \
+[`Visual Studio Code`](https://code.visualstudio.com/download) \
+[`MobaXterm`](https://mobaxterm.mobatek.net/download.html) - Alternatively use `ssh username@ip-address` for ssh connections.
 
 ## Installation
 
