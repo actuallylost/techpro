@@ -30,6 +30,12 @@ bash install.sh
 
 And then use the Shell GUI to install what is needed.
 
+## Common Issues
+
+Below are potential issues that you may encounter throughout the TechProAcademy Bootcamp:
+
+**WIP**
+
 ## Contribution
 
 If you would like to contribute to this repository, you can do so through pull requests. Fork the repository, make the changes, and then make a pull request with your changes.
