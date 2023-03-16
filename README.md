@@ -4,6 +4,13 @@
 
 This repository is a collection of guides, links and tools that have or will be used throughout the TechProAcademy Bootcamp.
 
+## Useful Links
+
+[VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+[Ubuntu 20.04 LTS](https://ubuntu.com/download/server#downloads)
+[Visual Studio Code](https://code.visualstudio.com/download)
+[MobaXterm](https://mobaxterm.mobatek.net/download.html) - Alternatively use `ssh username@ip-address` for ssh connections.
+
 ## Installation
 
 To get the repository, you can clone it using the following command:
@@ -22,6 +29,7 @@ bash install.sh
 ```
 
 And then use the Shell GUI to install what is needed.
+
 
 ## Contribution
 
