@@ -26,7 +26,7 @@ echo -e "${NC}"
 echo
 
 # Display menu options
-options=("List images" "List containers" "Start container" "Stop container" "Remove container" "Prune containers" "Prune Images" "Exit")
+options=("List images" "List containers" "Start container" "Stop container" "Remove container" "Prune containers" "Prune Images" "Create compose.yml" "Create Dockerfile" "Exit")
 
 # Process menu selections
 select option in "${options[@]}"
@@ -69,6 +69,118 @@ do
             echo -e "${YELLOW}Pruning Docker images...${NC}"
             docker image prune || echo -e "${RED}Failed to prune images.${NC}"
             echo -e "${GREEN}Done.${NC}"
+            ;;
+        "Create docker-compose.yml")
+            echo -e "${YELLOW}Creating a docker-compose.yml file...${NC}"
+
+            # Prompt user for project name
+            read -p "Enter project name: " project_name
+
+            # Prompt user for Docker image name
+            read -p "Enter Docker image name: " image_name
+
+            # Prompt user for container name (optional)
+            read -p "Enter container name (optional, default is my_app): " container_name
+            container_name=${container_name:-my_app}
+                
+            # Prompt user for restart policy (optional)
+            read -p "Enter restart policy (optional, default is no): " restart_policy
+            restart_policy=${restart_policy:-no}
+
+            # Prompt user for volumes (optional):
+            read -p "Add volumes? (y/n): " add_volumes
+
+            if [[ $add_volumes == "y" || $add_volumes == "Y" ]]; then
+                # Prompt user for outside volume
+                read -p "Enter outside volume: " outside_volume
+
+                # Prompt user for container volume
+                read -p "Enter container volume: " container_volume
+                
+                # Prompt user for whether to add ports or not
+                read -p "Add ports? (y/n): " add_ports
+
+                if [[ $add_ports == "y" || $add_ports == "Y" ]]; then
+                    # Prompt user for outside port
+                    read -p "Enter outside port: " outside_port
+
+                    # Prompt user for container port
+                    read -p "Enter container port: " container_port
+
+                    # Prompt user for container IP (optional)
+                    read -p "Enter container IP (optional): " container_ip
+
+                    # Create docker-compose.yml file with ports
+                    cat > docker-compose.yml <<EOF
+                    version: '3.8'
+                    services:
+                    $project_name:
+                        image: $image_name
+                        container_name: $container_name
+                        ports:
+                            - "$outside_port:$container_port"
+                        volumes:
+                            - $outside_volume:$container_volume
+                        restart: $restart_policy
+                    EOF
+
+                else
+                    # Create docker-compose.yml file without ports
+                    cat > docker-compose.yml <<EOF
+                    version: '3.8'
+                    services:
+                    $project_name:
+                        image: $image_name
+                        container_name: $container_name
+                        volumes:
+                            - $outside_volume:$container_volume
+                    EOF
+
+                fi
+
+            else
+                # Create docker-compose.yml file without volumes and ports
+                cat > docker-compose.yml <<EOF
+                version: '3.8'
+                services:
+                $project_name:
+                    image: $image_name
+                    container_name: $container_name
+                    restart: $restart_policy
+                EOF
+            fi
+
+            # Success message
+            echo -e "${GREEN}docker-compose.yml created successfully!${NC}"
+            ;;
+        "Create Dockerfile")
+            echo -e "${YELLOW}Creating a Dockerfile...${NC}"
+            
+            # Prompt user for base image
+            read -p "Enter base image: " base_image
+
+            # Prompt user for working directory
+            read -p "Enter working directory: " working_directory
+
+            # Prompt user for port
+            read -p "Enter port: " port
+
+            # Prompt user for command
+            read -p "Enter command: " command
+
+            # Promt user for EntryPoint
+            read -p "Enter EntryPoint: " entrypoint
+
+            # Create Dockerfile
+            cat > Dockerfile <<EOF
+            FROM $base_image
+            WORKDIR $working_directory
+            EXPOSE $port
+            CMD $command
+            ENTRYPOINT $entrypoint
+            EOF
+
+            echo -e "${GREEN}Dockerfile created successfully!${NC}"
             ;;
         "Exit")
             echo -e "${YELLOW}Exiting...${NC}"
