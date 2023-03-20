@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Define color variables
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -94,8 +92,8 @@ do
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
             echo \
-                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-                $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+              "deb [arch=$(dpkg --print-architecture) signed-by=etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+              $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             sudo apt update
             sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin || echo -e "${RED}Failed to install - Docker.${NC}"
@@ -123,9 +121,6 @@ do
             echo -e "${YELLOW}Installing Maven...${NC}"
             sudo apt install maven || echo -e "${RED}Failed to install - Maven.${NC}"
             echo -e "${GREEN}Done.${NC}"
-            echo -e "${YELLOW}Updating all currently installed packages...${NC}"
-            sudo apt update
-            echo -e "${GREEN}Done.${NC}"
             echo -e "${YELLOW}Installing Node.js...${NC}"
             sudo apt install nodejs || echo -e "${RED}Failed to install - Node.js.${NC}"
             echo -e "${GREEN}Done.${NC}"
@@ -144,8 +139,8 @@ do
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
             echo \
-                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-                $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+              "deb [arch=$(dpkg --print-architecture) signed-by=etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+              $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
             sudo apt update
             sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin || echo -e "${RED}Failed to install - Docker.${NC}"
@@ -161,6 +156,7 @@ do
             sudo reboot
             ;;
         "Exit")
+            echo -e "${YELLOW}Exiting...${NC}"
             break
             ;;
         *) 
