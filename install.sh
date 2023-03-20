@@ -26,7 +26,7 @@ echo -e "${NC}"
 echo
 
 # Display menu options
-options=("Update" "Install OpenSSH" "Install OpenJDK-11" "Install Maven" "Install Git" "Install Docker" "Install All" "Exit")
+options=("Update" "Install OpenSSH" "Install OpenJDK-11" "Install Maven" "Install Node.js" "Install Git" "Install Docker" "Install All" "Exit")
 
 # Process menu selections
 select option in "${options[@]}"
@@ -61,6 +61,14 @@ do
             sudo apt install maven || echo -e "${RED}Failed to install - Maven.${NC}"
             echo -e "${GREEN}Done.${NC}"
             ;;
+        "Install Node.js")
+            echo -e "${YELLOW}Updating all currently installed packages...${NC}"
+            sudo apt update
+            echo -e "${GREEN}Done.${NC}"
+            echo -e "${YELLOW}Installing Node.js...${NC}"
+            sudo apt install nodejs || echo -e "${RED}Failed to install - Node.js.${NC}"
+            echo -e "${GREEN}Done.${NC}"
+            ;;
         "Install Git")
             echo -e "${YELLOW}Updating all currently installed packages...${NC}"
             sudo apt update
@@ -81,7 +89,7 @@ do
                     lsb-release
 
             sudo mkdir -m 0755 -p /etc/apt/keyrings
-            curl -fsSL https://download.docker.com/liacnux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
             echo \
               "deb [arch=$(dpkg --print-architecture) signed-by=etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
@@ -125,7 +133,7 @@ do
                     lsb-release
 
             sudo mkdir -m 0755 -p /etc/apt/keyrings
-            curl -fsSL https://download.docker.com/liacnux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
             echo \
               "deb [arch=$(dpkg --print-architecture) signed-by=etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \

@@ -26,7 +26,7 @@ echo -e "${NC}"
 echo
 
 # Display menu options
-options=("List images" "List containers" "Start container" "Stop container" "Remove container" "Prune containers" "Prune Images" "Create compose.yml" "Create Dockerfile" "Exit")
+options=("List images" "List containers" "Start container" "Stop container" "Remove container" "Prune containers" "Prune images" "Create docker-compose.yml" "Create Dockerfile" "Exit")
 
 # Process menu selections
 select option in "${options[@]}"
@@ -134,7 +134,7 @@ EOF
                         container_name: $container_name
                         volumes:
                             - $outside_volume:$container_volume
-                    EOF
+EOF
 
                 fi
 
@@ -147,7 +147,7 @@ EOF
                     image: $image_name
                     container_name: $container_name
                     restart: $restart_policy
-                EOF
+EOF
             fi
 
             # Success message
@@ -177,7 +177,7 @@ EOF
             WORKDIR $working_directory
             EXPOSE $port
             CMD $command
-            ENTRYPOINT $entrypoint
+            ENTRYPOINT [$entrypoint]
 EOF
 
             echo -e "${GREEN}Dockerfile created successfully!${NC}"
