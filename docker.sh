@@ -122,7 +122,7 @@ do
                         volumes:
                             - $outside_volume:$container_volume
                         restart: $restart_policy
-                    EOF
+EOF
 
                 else
                     # Create docker-compose.yml file without ports
@@ -178,7 +178,7 @@ do
             EXPOSE $port
             CMD $command
             ENTRYPOINT $entrypoint
-            EOF
+EOF
 
             echo -e "${GREEN}Dockerfile created successfully!${NC}"
             ;;
